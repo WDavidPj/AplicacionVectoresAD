@@ -6,6 +6,8 @@
 
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author wpadilla4
@@ -57,20 +59,32 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Longitud:");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 50, 20));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Datos Inicales");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 110, 30));
-        jPanel3.add(txtLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 80, 20));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 210, 60));
+        txtLongitud.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLongitudKeyTyped(evt);
+            }
+        });
+        jPanel3.add(txtLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 110, 30));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 210, 80));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmdCrear.setText("Crear");
+        cmdCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCrearActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 100, 30));
 
         jLabel4.setText("Opciones");
@@ -86,6 +100,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 100, 30));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 100, 30));
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 190, 250));
@@ -96,6 +115,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("Resultados");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
+        txtResultado.setEditable(false);
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
         jScrollPane1.setViewportView(txtResultado);
@@ -117,6 +137,45 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
+       if (txtLongitud.getText().trim().isEmpty()){
+           JOptionPane.showMessageDialog(this,"Digite la Longitud","Error",JOptionPane.ERROR_MESSAGE);
+           txtLongitud.requestFocusInWindow();
+           
+       }else if (txtLongitud.getText().trim().equals(0)){
+           JOptionPane.showMessageDialog(this,"La longitud no puede ser cero","Error",JOptionPane.ERROR_MESSAGE);
+           txtLongitud.requestFocusInWindow();
+           txtLongitud.selectAll();
+       }else{
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+       }   
+    }//GEN-LAST:event_cmdCrearActionPerformed
+
+    private void txtLongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLongitudKeyTyped
+       char c=evt.getKeyChar(); 
+           if(!Character.isDigit(c)) { 
+               getToolkit().beep(); 
+               evt.consume(); 
+           } 
+    }//GEN-LAST:event_txtLongitudKeyTyped
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtLongitud.setText("");
+        txtResultado.setText("");
+        
+        txtLongitud.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
