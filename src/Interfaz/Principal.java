@@ -17,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    double v[];
     public Principal() {
         initComponents();
     }
@@ -91,12 +92,27 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         cmdLlevarManual.setText("Llevar Manual");
+        cmdLlevarManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlevarManualActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdLlevarManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 100, 30));
 
         cmdLlevarAuto.setText("Llevar Auto");
+        cmdLlevarAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlevarAutoActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdLlevarAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 100, 30));
 
         cmdMostrar.setText("Mostrar");
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 100, 30));
 
         cmdBorrar.setText("Borrar");
@@ -139,26 +155,22 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-       if (txtLongitud.getText().trim().isEmpty()){
+      
+        int Longitud;
+        if (txtLongitud.getText().trim().isEmpty()){
            JOptionPane.showMessageDialog(this,"Digite la Longitud","Error",JOptionPane.ERROR_MESSAGE);
            txtLongitud.requestFocusInWindow();
            
-       }else if (txtLongitud.getText().trim().equals(0)){
+       }else if (Integer.parseInt(txtLongitud.getText().trim())==0) {
            JOptionPane.showMessageDialog(this,"La longitud no puede ser cero","Error",JOptionPane.ERROR_MESSAGE);
            txtLongitud.requestFocusInWindow();
            txtLongitud.selectAll();
        }else{
            
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
+           Longitud = Integer.parseInt(txtLongitud.getText().trim());
+           v = new double[Longitud];
+           JOptionPane.showMessageDialog(this,"Vector Creado Exitosamente");
+              
        }   
     }//GEN-LAST:event_cmdCrearActionPerformed
 
@@ -167,15 +179,52 @@ public class Principal extends javax.swing.JFrame {
            if(!Character.isDigit(c)) { 
                getToolkit().beep(); 
                evt.consume(); 
-           } 
+           }
+           
     }//GEN-LAST:event_txtLongitudKeyTyped
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
         txtLongitud.setText("");
         txtResultado.setText("");
+        v= null;
         
         txtLongitud.requestFocusInWindow();
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdLlevarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlevarManualActionPerformed
+        double n;
+        for (int i = 0; i < v.length; i++) {
+            n=Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posicion "+i));
+            v[i]=n;
+        }
+    }//GEN-LAST:event_cmdLlevarManualActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+        for (int i = 0; i < v.length; i++) {
+            txtResultado.append(v[i]+" \n");
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdLlevarAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlevarAutoActionPerformed
+       double n;
+        for (int i = 0; i < v.length; i++) {
+//Manera Random            
+//n=(int)(Math.random()*50 + 1);;
+            n=i+1;
+            v[i]=n;
+        }
+        JOptionPane.showMessageDialog(this,"Vector Llenado Correctamente");
+    }//GEN-LAST:event_cmdLlevarAutoActionPerformed
 
     /**
      * @param args the command line arguments
