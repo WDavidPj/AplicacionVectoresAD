@@ -213,6 +213,7 @@ public class Principal extends javax.swing.JFrame {
     private void cmdLlevarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlevarManualActionPerformed
         double n;
         int sw,res;
+        boolean aux = true;
         for (int i = 0; i < v.length; i++) {
             do{
                 sw=1;
@@ -228,6 +229,7 @@ public class Principal extends javax.swing.JFrame {
                 if(res == 0){
                     sw = 1;
                     i = v.length;
+                    aux = false;
                 }else{
                     sw=0;
                 }
@@ -237,7 +239,7 @@ public class Principal extends javax.swing.JFrame {
         cmdCrear.setEnabled(false);
         cmdLlevarManual.setEnabled(false);
         cmdLlevarAuto.setEnabled(false);
-        cmdMostrar.setEnabled(true);
+        cmdMostrar.setEnabled(aux);
         cmdBorrar.setEnabled(true);
     }//GEN-LAST:event_cmdLlevarManualActionPerformed
 
