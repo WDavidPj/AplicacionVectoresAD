@@ -212,7 +212,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdLlevarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlevarManualActionPerformed
         double n;
-        int sw;
+        int sw,res;
         for (int i = 0; i < v.length; i++) {
             do{
                 sw=1;
@@ -223,8 +223,14 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Digite un numero valido");
                 sw=0;
             }catch(NullPointerException e){
-                JOptionPane.showMessageDialog(this,"No puede salir");
-                sw=0;
+                //sw=0;
+                res=JOptionPane.showConfirmDialog(this, "¿Seguro que desea salir?","Salir",JOptionPane.YES_OPTION);
+                if(res == 0){
+                    sw = 1;
+                    i = v.length;
+                }else{
+                    sw=0;
+                }
             }
            } while (sw==0);
         }
